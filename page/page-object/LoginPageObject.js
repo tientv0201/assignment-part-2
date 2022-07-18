@@ -1,24 +1,23 @@
+const loginPageLocators = require("../../fixture/locators/login-page.locators");
 var Action = require("../../utils/action");
 
 class LoginPageObject extends Action
 {
 
-    async inputEmail(email)
+    async inputEmailInLoginPanel(email)
     {
-        const element = await this.findElementByXPath()
-        await this.action.setValue(element, email);
+        await this.setValue(await this.findElementById(loginPageLocators.ID_EMAIL_TEXTBOX_IN_LOGIN_PANEL), email);
     }
 
-    async inputPassword(password) 
+    async inputPasswordInLoginPanel(password)
     {
-        const element = await this.findElementByXPath('');
-        await this.setValue(element, password);
+        await this.setValue(await this.findElementById(loginPageLocators.ID_PASSWORD_TEXTBOX_IN_LOGIN_PANEL), password);
     }
 
-    async clickOnLoginButton() 
+    async clickOnButtonInLoginPanel()
     {
-        await this.click(await this.findElementByXPath(''));
+        await this.click(await this.findElementByXPath(loginPageLocators.XPATH_LOGIN_BUTTON_IN_LOGIN_PANEL));
     }
 }
 
-module.exports = new LoginPageObject;
+module.exports = LoginPageObject;

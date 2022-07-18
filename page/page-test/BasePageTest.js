@@ -1,16 +1,23 @@
-const { assert } = require("chai");
 const Action = require("../../utils/action");
 
 class BasePageTest extends Action 
 {
     async openBrowser(url)
     {
-        driver.get(url);
+        try {
+            await driver.get(url);
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     async closeBrowser()
     {
-        driver.close();
+        try {
+            await driver.close();
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
 

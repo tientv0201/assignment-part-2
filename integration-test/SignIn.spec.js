@@ -1,19 +1,19 @@
-const { doLogin } = require("../page/page-test/LoginPageTest")
 const data = require('../fixture/data/existing-account.json');
 const { openBrowser, closeBrowser } = require("../page/page-test/BasePageTest");
-const { byPassHelloDialog } = require("../page/page-test/HomePageTest");
+const HomePageTest = require("../page/page-test/HomePageTest");
+const LoginPageTest = require("../page/page-test/LoginPageTest");
 
-describe('Sign In test flow', async function() {
-    this.beforeEach(async function() {
-        await this.timeout(60000);
+describe('Sign In test flow', function() {
+    beforeEach(async function() {
         await openBrowser(data.URL);
     });
 
-    this.afterEach(async function() {
-        await closeBrowser();
+    it('sign in successfully', async function() {
+        await HomePageTest.byPassHelloDialog();
+        await LoginPageTest.doLoginByEmail('qathth@gmail.com', 'Pomelo1857$');
     })
 
-    it('sign in successfully', async function() {
-        await byPassHelloDialog();
+    afterEach(async function() {
+        await closeBrowser();
     })
 });

@@ -6,7 +6,6 @@ class HomePageTest extends HomePageObject
 {
     async byPassHelloDialog() 
     {
-        assert.isTrue(await homePageObject.isHelloDialogDisplayed());
         await homePageObject.clickOnCloseButtonInHelloDialog();
     }
 }
