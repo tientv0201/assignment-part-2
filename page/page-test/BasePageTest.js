@@ -1,3 +1,4 @@
+const { Actions } = require("selenium-webdriver");
 const Action = require("../../utils/action");
 
 class BasePageTest extends Action 
@@ -19,6 +20,7 @@ class BasePageTest extends Action
             console.log(error)
         }
     }
+
 }
 
 module.exports = new BasePageTest;

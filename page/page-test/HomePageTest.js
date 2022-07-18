@@ -8,6 +8,10 @@ class HomePageTest extends HomePageObject
     {
         await homePageObject.clickOnCloseButtonInHelloDialog();
     }
+
+    async goToLoginPanel() {
+        await homePageObject.clickOnLoginButtonAtHeader();
+    }
 }
 
 module.exports = new HomePageTest;

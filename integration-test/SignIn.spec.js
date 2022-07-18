@@ -1,19 +1,20 @@
 const data = require('../fixture/data/existing-account.json');
-const { openBrowser, closeBrowser } = require("../page/page-test/BasePageTest");
+const BasePageTest = require("../page/page-test/BasePageTest");
 const HomePageTest = require("../page/page-test/HomePageTest");
 const LoginPageTest = require("../page/page-test/LoginPageTest");
 
 describe('Sign In test flow', function() {
-    beforeEach(async function() {
-        await openBrowser(data.URL);
+    this.beforeEach(async function() {
+        await BasePageTest.openBrowser(data.URL);
     });
+
+    this.afterEach(async function() {
+        await BasePageTest.closeBrowser();
+    })
 
     it('sign in successfully', async function() {
         await HomePageTest.byPassHelloDialog();
-        await LoginPageTest.doLoginByEmail('qathth@gmail.com', 'Pomelo1857$');
-    })
-
-    afterEach(async function() {
-        await closeBrowser();
+        await HomePageTest.goToLoginPanel();
+        await LoginPageTest.doLoginByEmail(data.ExistingAccount.email, data.ExistingAccount.password);
     })
 });

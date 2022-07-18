@@ -1,9 +1,19 @@
-const { By, Builder, until } = require('selenium-webdriver');
-require('chromedriver');
+const { By, Builder, until} = require('selenium-webdriver');
+require('chromedriver')
+var chrome = require("selenium-webdriver/chrome");
 
-var driver = new Builder().forBrowser('chrome').build();
+var chromeOptions = new chrome.Options();
+chromeOptions.addArguments("test-type");
+chromeOptions.addArguments("start-maximized");
+chromeOptions.addArguments("--js-flags=--expose-gc");
+chromeOptions.addArguments("--enable-precise-memory-info");
+chromeOptions.addArguments("--disable-popup-blocking");
+chromeOptions.addArguments("--disable-default-apps");
+chromeOptions.addArguments("--disable-infobars");
+chromeOptions.addArguments("--disable-notifications");
+
+var driver = new Builder().forBrowser("chrome").setChromeOptions(chromeOptions).build();
 driver.manage().setTimeouts({implicit: (10000)});
-driver.manage().window().maximize();
 
 class Action {
     constructor() 
@@ -58,6 +68,7 @@ class Action {
     {
         await driver.wait(until.elementIsVisible(element), 2000)
     }
+
 }
 
 module.exports = Action;
