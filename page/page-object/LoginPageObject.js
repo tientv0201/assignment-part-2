@@ -1,4 +1,3 @@
-const homePageLocators = require("../../fixture/locators/home-page.locators");
 const loginPageLocators = require("../../fixture/locators/login-page.locators");
 var Action = require("../../utils/action");
 

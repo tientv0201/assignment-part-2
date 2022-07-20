@@ -1,4 +1,3 @@
-const { Actions } = require("selenium-webdriver");
 const Action = require("../../utils/action");
 
 class BasePageTest extends Action 
