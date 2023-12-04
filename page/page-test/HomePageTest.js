@@ -4,13 +4,28 @@ const HomePageObject = require("../page-object/HomePageObject");
 const homePageObject = new HomePageObject();
 class HomePageTest extends HomePageObject 
 {
-    async byPassHelloDialog() 
+    async verifyWelcomeToInternet() 
     {
-        await homePageObject.clickOnCloseButtonInHelloDialog();
+        assert.equal(await this.getTitleHomePage(), "Welcome to the-internet")
     }
 
-    async goToLoginPanel() {
-        await homePageObject.clickOnLoginButtonAtHeader();
+    async goToLogin() {
+        await homePageObject.clickOnBasicAuthInHomePage();
+    }
+
+    async goToCheckboxPage() 
+    {
+        await homePageObject.clickOnCheckboxesInHomePage();
+    }
+
+    async goToDropdownPage() 
+    {
+        await homePageObject.clickOnDropwdownInHomePage();
+    }
+
+    async goToUploadFilePage()
+    {
+        await homePageObject
     }
 }
 

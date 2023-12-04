@@ -26,6 +26,11 @@ class Action {
         return await driver.findElement(By.xpath(locator));
     }
 
+    async findElementsByXPath(locator) 
+    {
+        return await driver.findElements(By.xpath(locator));
+    }
+
     async findElementById(locator) 
     {
         return await driver.findElement(By.id(locator));
@@ -39,6 +44,20 @@ class Action {
     async click(element) 
     {
         await element.click();
+    }
+
+    async getValue(element)
+    {
+        return await element.getText();
+    }
+
+    async getValueInList(elements)
+    {
+        let arrayListName = [];
+        elements.forEach(element => {
+            arrayListName.push(element.getText())
+        });
+        return arrayListName;
     }
 
     async isElementByXpathDisplayed(locator) {
@@ -67,6 +86,24 @@ class Action {
     async waitForElementDisplayed(element)
     {
         await driver.wait(until.elementIsVisible(element), 2000)
+    }
+
+    async isChecked(element)
+    {
+        let flag = true;
+        if (await element.getAttribute("checked") == null)
+        {
+            flag = false;
+        } else {
+            flag = true
+        }
+
+        return flag;
+    }
+
+    async openUrl(URL)
+    {
+        await driver.get(URL)
     }
 
 }

@@ -1,20 +1,28 @@
-const data = require('../fixture/data/existing-account.json');
+const data = require('../fixture/data/data-test.json');
 const BasePageTest = require("../page/page-test/BasePageTest");
 const HomePageTest = require("../page/page-test/HomePageTest");
 const LoginPageTest = require("../page/page-test/LoginPageTest");
 
-describe('Sign In test flow', function() {
-    this.beforeEach(async function() {
+describe('Verify Form Authentication', function() {
+    this.beforeAll(async function() {
         await BasePageTest.openBrowser(data.URL);
     });
 
-    this.afterEach(async function() {
+    this.afterAll(async function() {
         await BasePageTest.closeBrowser();
     })
+    
+    it('Verify that an error message appears for invalid credentials.', async function() {
+        let username = data.AccountInvalid.username;
+        let password = data.AccountCorrect.password;
+        enpointBasicAuth = "http://"+username+":"+password+"@"+"localhost:8080/basic_auth";
+        await LoginPageTest.loginAndVerifyInvalidCredentials(enpointBasicAuth);
+    })
 
-    it('sign in successfully', async function() {
-        await HomePageTest.byPassHelloDialog();
-        await HomePageTest.goToLoginPanel();
-        await LoginPageTest.doLoginByEmail(data.ExistingAccount.email, data.ExistingAccount.password);
+    it('Verify that users can successfully log in with valid credentials.', async function() {
+        let username = data.AccountCorrect.username;
+        let password = data.AccountCorrect.password;
+        enpointBasicAuth = "http://"+username+":"+password+"@"+"localhost:8080/basic_auth";
+        await LoginPageTest.loginAndVerifyValidCredentials(enpointBasicAuth);
     })
 });

@@ -4,20 +4,16 @@ var Action = require("../../utils/action");
 class LoginPageObject extends Action
 {
 
-    async inputEmailInLoginPanel(email)
+    async getContentSuccess()
     {
-        await this.setValue(await this.findElementById(loginPageLocators.ID_EMAIL_TEXTBOX_IN_LOGIN_PANEL), email);
+        return await this.getValue(await this.findElementByXPath(loginPageLocators.XPATH_TITLE_MESSAGE_SUCCESS));
     }
 
-    async inputPasswordInLoginPanel(password)
+    async isNotDisplayContentSuccess()
     {
-        await this.setValue(await this.findElementById(loginPageLocators.ID_PASSWORD_TEXTBOX_IN_LOGIN_PANEL), password);
+        return await this.isElementByXpathDisplayed(loginPageLocators.XPATH_TITLE_MESSAGE_SUCCESS);
     }
 
-    async clickOnButtonInLoginPanel()
-    {
-        await this.click(await this.findElementByXPath(loginPageLocators.XPATH_LOGIN_BUTTON_IN_LOGIN_PANEL));
-    }
 }
 
 module.exports = LoginPageObject;

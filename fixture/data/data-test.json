@@ -1,0 +1,11 @@
+{
+    "AccountCorrect": {
+        "username": "admin",
+        "password": "admin"
+    },
+    "AccountInvalid": {
+        "username": "invalid",
+        "password": "invalid"
+    },
+    "URL": "http://localhost:8080"
+}

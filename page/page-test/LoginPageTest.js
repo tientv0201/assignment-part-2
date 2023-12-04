@@ -1,14 +1,19 @@
 const { assert } = require("chai");
 const LoginPageObject = require("../page-object/LoginPageObject");
+const sleep = ms => new Promise(res => setTimeout(res, ms));
 
-const loginPageObject = new LoginPageObject();
 class LoginPageTest extends LoginPageObject 
 {
-    async doLoginByEmail(email, password) 
+    async loginAndVerifyValidCredentials(url) 
     {
-        await loginPageObject.inputEmailInLoginPanel(email);
-        await loginPageObject.inputPasswordInLoginPanel(password);
-        await loginPageObject.clickOnButtonInLoginPanel();
+        await this.openUrl(url)
+        assert.equal(await this.getContentSuccess(), "Congratulations! You must have the proper credentials.")
+    }
+
+    async loginAndVerifyInvalidCredentials(url)
+    {
+        await this.openUrl(url)
+        assert.isFalse(await this.isNotDisplayContentSuccess());
     }
 }
 

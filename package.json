@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --spec integration-test/*.js --timeout=30000 --reporter mochawesome",
+    "test-login": "mocha --spec integration-test/SignIn.spec.js --timeout=30000 --reporter mochawesome",
+    "test-checkbox": "mocha --spec integration-test/Checkbox.spec.js --timeout=30000 --reporter mochawesome",
+    "test-dropdown": "mocha --spec integration-test/Dropdown.spec.js --timeout=30000 --reporter mochawesome",
+    "test-upload": "mocha --spec integration-test/UploadFile.spec.js --timeout=30000 --reporter mochawesome",
     "run": "node integration/test-example.js"
   },
   "author": "",
